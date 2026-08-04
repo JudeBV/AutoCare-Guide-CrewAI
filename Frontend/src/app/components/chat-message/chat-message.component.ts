@@ -10,7 +10,7 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
   imports: [CommonModule, FormsModule, ResponseDetailsComponent],
   template: `
     <article 
-      class="message-row" 
+      class="message-row animate-message-appear" 
       [class.user-row]="message.sender === 'user'" 
       [class.assistant-row]="message.sender === 'assistant'"
       [attr.aria-label]="message.sender === 'user' ? 'User message' : 'Assistant message'">
@@ -29,8 +29,8 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
               aria-label="Edit your message text">
             </textarea>
             <div class="edit-actions">
-              <button type="button" class="btn-sm btn-save" (click)="saveEdit()">Resend</button>
-              <button type="button" class="btn-sm btn-cancel" (click)="cancelEdit()">Cancel</button>
+              <button type="button" class="btn-sm btn-save btn-interactive" (click)="saveEdit()">Resend</button>
+              <button type="button" class="btn-sm btn-cancel btn-interactive" (click)="cancelEdit()">Cancel</button>
             </div>
           </div>
 
@@ -43,7 +43,7 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
               (click)="startEdit()"
               aria-label="Edit and resend message"
               title="Edit and resend">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
               </svg>
@@ -73,19 +73,19 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
               <button 
                 *ngIf="message.originalQuery" 
                 type="button" 
-                class="retry-btn" 
+                class="retry-btn btn-interactive min-touch-target" 
                 (click)="onRetryClick()">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="23 4 23 10 17 10"></polyline>
                   <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
                 </svg>
-                <span>Retry</span>
+                <span>Retry Question</span>
               </button>
             </div>
 
             <ng-container *ngIf="!message.isError">
               <!-- Emergency Safety Banner -->
-              <div *ngIf="isEmergency()" class="emergency-banner" role="alert" aria-live="assertive">
+              <div *ngIf="isEmergency()" class="emergency-banner animate-badge-glow" role="alert" aria-live="assertive">
                 <div class="emergency-header">
                   <span class="emergency-icon">🚨</span>
                   <span class="emergency-title">IMMEDIATE SAFETY ACTION REQUIRED</span>
@@ -102,7 +102,7 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
               </div>
 
               <!-- Complaint & Support Banner -->
-              <div *ngIf="isComplaint()" class="complaint-banner" role="status">
+              <div *ngIf="isComplaint()" class="complaint-banner animate-badge-glow" role="status">
                 <span class="complaint-icon">🤝</span>
                 <span class="complaint-title">Customer Support & Complaint Assistance</span>
               </div>
@@ -119,8 +119,8 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
                 <span class="scope-title">Out of Scope Guidance</span>
               </div>
 
-              <!-- Prominent LOW or CONTRADICTORY Confidence Alert (Only for Diagnostic Queries) -->
-              <div *ngIf="isLowOrContradictoryConfidence()" class="confidence-alert" role="status">
+              <!-- Prominent LOW or CONTRADICTORY Confidence Alert -->
+              <div *ngIf="isLowOrContradictoryConfidence()" class="confidence-alert animate-badge-glow" role="status">
                 <div class="confidence-header">
                   <span class="alert-icon">⚠️</span>
                   <span>Uncertain Diagnostic Confidence ({{ message.responseData?.confidence_level }})</span>
@@ -129,14 +129,14 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
                   Essential diagnostic details are missing or contradictory. Please do not rely on this output without verification.
                 </p>
                 <div class="confidence-actions">
-                  <button type="button" class="action-btn" (click)="onClarificationRequest()">Ask for clarification</button>
-                  <button type="button" class="action-btn action-btn-secondary" (click)="onHumanSupportRequest()">Request human support</button>
+                  <button type="button" class="action-btn btn-interactive min-touch-target" (click)="onClarificationRequest()">Ask for clarification</button>
+                  <button type="button" class="action-btn action-btn-secondary btn-interactive min-touch-target" (click)="onHumanSupportRequest()">Request human support</button>
                 </div>
               </div>
 
               <!-- Standard Informational Badge -->
               <div class="disclaimer-badge" *ngIf="isInformational()">
-                ℹ️ Informational Summary — AutoCare Maintenance Guide
+                ✨ AutoCare Maintenance Guide
               </div>
 
               <!-- Response Text -->
@@ -152,41 +152,43 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
               <div class="feedback-container">
                 <div *ngIf="!message.feedback" class="feedback-prompt">
                   <span class="feedback-label">Was this answer helpful?</span>
-                  <button 
-                    type="button" 
-                    class="feedback-btn" 
-                    (click)="submitFeedback('helpful')"
-                    aria-label="Mark response as helpful">
-                    👍 Yes
-                  </button>
-                  <button 
-                    type="button" 
-                    class="feedback-btn" 
-                    (click)="submitFeedback('unhelpful')"
-                    aria-label="Mark response as not helpful">
-                    👎 No
-                  </button>
+                  <div class="feedback-buttons">
+                    <button 
+                      type="button" 
+                      class="feedback-btn btn-interactive min-touch-target" 
+                      (click)="submitFeedback('helpful')"
+                      aria-label="Mark response as helpful">
+                      👍 Yes
+                    </button>
+                    <button 
+                      type="button" 
+                      class="feedback-btn btn-interactive min-touch-target" 
+                      (click)="submitFeedback('unhelpful')"
+                      aria-label="Mark response as not helpful">
+                      👎 No
+                    </button>
+                  </div>
                 </div>
 
                 <!-- Unhelpful Reason Options -->
-                <div *ngIf="message.feedback === 'unhelpful' && !message.feedbackAcknowledged" class="reason-selector">
+                <div *ngIf="message.feedback === 'unhelpful' && !message.feedbackAcknowledged" class="reason-selector animate-message-appear">
                   <p class="reason-title">What best describes the issue?</p>
                   <div class="reason-chips">
                     <button 
                       *ngFor="let reason of availableReasons"
                       type="button" 
-                      class="reason-chip"
+                      class="reason-chip btn-interactive min-touch-target"
                       [class.selected]="selectedReasons.includes(reason)"
                       (click)="toggleReason(reason)">
                       {{ reason }}
                     </button>
                   </div>
-                  <button type="button" class="btn-sm btn-save" (click)="confirmFeedbackReasons()">Submit feedback</button>
+                  <button type="button" class="btn-sm btn-save btn-interactive min-touch-target" (click)="confirmFeedbackReasons()">Submit feedback</button>
                 </div>
 
                 <!-- Feedback Acknowledgment -->
                 <div *ngIf="message.feedbackAcknowledged || message.feedback === 'helpful'" class="feedback-ack" role="status">
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span>Thank you for your feedback! This helps us improve AutoCare Guide.</span>
@@ -205,346 +207,7 @@ import { ResponseDetailsComponent } from '../response-details/response-details.c
 
     </article>
   `,
-  styles: [`
-    .message-row {
-      display: flex;
-      margin-bottom: 1.25rem;
-      padding: 0 1rem;
-    }
-    .user-row {
-      justify-content: flex-end;
-    }
-    .assistant-row {
-      justify-content: flex-start;
-      gap: 0.75rem;
-    }
-    .user-bubble {
-      max-width: 75%;
-      background-color: var(--color-navy);
-      color: white;
-      border-radius: 16px 16px 4px 16px;
-      padding: 0.875rem 1.125rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    }
-    .assistant-avatar-col {
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .avatar-badge {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background-color: rgba(2, 132, 199, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.125rem;
-    }
-    .avatar-error {
-      background-color: #fee2e2;
-    }
-    .assistant-bubble-wrap {
-      max-width: 80%;
-    }
-    .assistant-bubble {
-      background-color: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: 16px 16px 16px 4px;
-      padding: 1rem 1.25rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-    .bubble-emergency {
-      border-left: 5px solid var(--color-danger);
-      background-color: #fff5f5;
-    }
-    .bubble-refuse {
-      border-left: 5px solid var(--color-warning);
-      background-color: #fffbeb;
-    }
-    .bubble-complaint {
-      border-left: 5px solid #0284c7;
-      background-color: #f0f9ff;
-    }
-    .bubble-clarify {
-      border-left: 5px solid var(--color-primary);
-      background-color: #f0f9ff;
-    }
-    .bubble-error {
-      border-left: 5px solid var(--color-danger);
-      background-color: #fff5f5;
-    }
-    .complaint-banner {
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-      font-weight: 700;
-      font-size: 0.875rem;
-      color: #0369a1;
-      margin-bottom: 0.5rem;
-    }
-    .scope-banner {
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-      font-weight: 700;
-      font-size: 0.875rem;
-      color: #475569;
-      margin-bottom: 0.5rem;
-    }
-    .bubble-scope {
-      border-left: 5px solid var(--color-text-muted);
-      background-color: #f8fafc;
-    }
-    .error-banner {
-      color: #991b1b;
-    }
-    .error-header {
-      font-weight: 700;
-      font-size: 0.9375rem;
-      margin-bottom: 0.375rem;
-      color: var(--color-danger);
-    }
-    .error-text {
-      font-size: 0.875rem;
-      margin: 0 0 0.75rem 0;
-      line-height: 1.4;
-    }
-    .retry-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
-      padding: 0.375rem 0.75rem;
-      border-radius: 6px;
-      border: 1px solid var(--color-danger);
-      background-color: white;
-      color: var(--color-danger);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
-    .retry-btn:hover {
-      background-color: var(--color-danger);
-      color: white;
-    }
-    .emergency-banner {
-      background-color: #fee2e2;
-      border: 1px solid #fca5a5;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 0.875rem;
-      color: #7f1d1d;
-    }
-    .emergency-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-      font-size: 0.9375rem;
-      margin-bottom: 0.5rem;
-      color: var(--color-danger);
-    }
-    .emergency-instruction {
-      font-weight: 600;
-      font-size: 0.9375rem;
-      line-height: 1.4;
-      margin: 0 0 0.5rem 0;
-    }
-    .emergency-dest {
-      font-size: 0.8125rem;
-      background-color: rgba(220, 38, 38, 0.1);
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 0.5rem;
-    }
-    .emergency-disclaimer {
-      font-size: 0.75rem;
-      color: #991b1b;
-      font-style: italic;
-      line-height: 1.35;
-    }
-    .refusal-banner {
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-      font-weight: 700;
-      font-size: 0.875rem;
-      color: #92400e;
-      margin-bottom: 0.5rem;
-    }
-    .confidence-alert {
-      background-color: #fef3c7;
-      border: 1px solid #fde68a;
-      border-radius: 8px;
-      padding: 0.75rem;
-      margin-bottom: 0.75rem;
-      color: #78350f;
-    }
-    .confidence-header {
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-      font-weight: 700;
-      font-size: 0.875rem;
-      margin-bottom: 0.25rem;
-    }
-    .confidence-body {
-      font-size: 0.8125rem;
-      margin: 0 0 0.5rem 0;
-    }
-    .confidence-actions {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .action-btn {
-      padding: 0.25rem 0.625rem;
-      border-radius: 6px;
-      border: 1px solid #d97706;
-      background-color: #d97706;
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .action-btn-secondary {
-      background-color: transparent;
-      color: #78350f;
-    }
-    .disclaimer-badge {
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-      background-color: #f1f5f9;
-      padding: 0.25rem 0.625rem;
-      border-radius: 12px;
-      width: fit-content;
-      margin-bottom: 0.75rem;
-    }
-    .message-text {
-      font-size: 0.9375rem;
-      line-height: 1.5;
-      color: var(--color-text-main);
-      white-space: pre-wrap;
-    }
-    .user-bubble .message-text {
-      color: white;
-    }
-    .edit-box {
-      margin-bottom: 0.5rem;
-    }
-    .edit-textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 6px;
-      border: 1px solid var(--color-primary);
-      font-family: inherit;
-      font-size: 0.875rem;
-      resize: vertical;
-    }
-    .edit-actions {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.375rem;
-    }
-    .btn-sm {
-      padding: 0.25rem 0.625rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      border-radius: 4px;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-save { background-color: var(--color-primary); color: white; }
-    .btn-cancel { background-color: #e2e8f0; color: var(--color-navy); }
-    .bubble-footer {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 0.5rem;
-      margin-top: 0.375rem;
-    }
-    .message-time {
-      font-size: 0.6875rem;
-      color: var(--color-text-muted);
-    }
-    .user-bubble .message-time {
-      color: rgba(255, 255, 255, 0.75);
-    }
-    .edit-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      background: transparent;
-      border: none;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.6875rem;
-      cursor: pointer;
-      padding: 0;
-    }
-    .edit-btn:hover { color: white; }
-    .feedback-container {
-      margin-top: 0.75rem;
-      padding-top: 0.5rem;
-      border-top: 1px dashed var(--color-border);
-    }
-    .feedback-prompt {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-    }
-    .feedback-btn {
-      padding: 0.125rem 0.5rem;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      background-color: var(--color-surface);
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
-    .feedback-btn:hover { background-color: #f1f5f9; }
-    .reason-selector {
-      margin-top: 0.5rem;
-      background-color: #f8fafc;
-      padding: 0.625rem;
-      border-radius: 8px;
-      border: 1px solid var(--color-border);
-    }
-    .reason-title {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--color-navy);
-      margin: 0 0 0.375rem 0;
-    }
-    .reason-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.375rem;
-      margin-bottom: 0.5rem;
-    }
-    .reason-chip {
-      padding: 0.25rem 0.5rem;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      background-color: white;
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
-    .reason-chip.selected {
-      background-color: rgba(2, 132, 199, 0.15);
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-      font-weight: 600;
-    }
-    .feedback-ack {
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-      font-size: 0.75rem;
-      color: var(--color-success);
-    }
-  `]
+  styles: []
 })
 export class ChatMessageComponent {
   @Input() message!: ChatMessage;
@@ -603,7 +266,6 @@ export class ChatMessageComponent {
   isLowOrContradictoryConfidence(): boolean {
     const conf = this.message.responseData?.confidence_level;
     const reqType = this.getRequestType();
-    // Do NOT display "Uncertain Diagnostic Confidence" for informational questions or complaints that do not request a diagnosis
     if (reqType === 'INFORMATIONAL' || reqType === 'COMPLAINT' || reqType === 'OUT_OF_SCOPE' || this.isComplaint()) {
       return false;
     }

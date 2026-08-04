@@ -21,119 +21,157 @@ import { EscalationModalComponent } from './components/escalation-modal/escalati
     EscalationModalComponent
   ],
   template: `
-    <div class="app-layout">
-      <!-- Header -->
-      <app-header (clearChat)="onClearChat()"></app-header>
+    <div class="app-viewport">
+      <div class="app-layout glass-surface">
+        <!-- Header -->
+        <app-header (clearChat)="onClearChat()"></app-header>
 
-      <!-- Main Chat Area -->
-      <main class="chat-main" #chatScrollContainer role="log" aria-live="polite" aria-label="Conversation Log">
-        
-        <!-- Welcome Section (Shown when no messages exist) -->
-        <app-welcome 
-          *ngIf="messages.length === 0" 
-          (selectQuestion)="handleSendMessage($event)">
-        </app-welcome>
+        <!-- Main Chat Area -->
+        <main class="chat-main" #chatScrollContainer role="log" aria-live="polite" aria-label="Conversation Log">
+          
+          <!-- Welcome Section (Shown when no messages exist) -->
+          <app-welcome 
+            *ngIf="messages.length === 0" 
+            (selectQuestion)="handleSendMessage($event)">
+          </app-welcome>
 
-        <!-- Conversation History -->
-        <div class="messages-list" *ngIf="messages.length > 0">
-          <app-chat-message
-            *ngFor="let msg of messages"
-            [message]="msg"
-            (resendMessage)="handleResendMessage($event)"
-            (retryMessage)="handleRetryMessage($event)"
-            (triggerClarification)="handleClarificationRequest()"
-            (triggerHumanSupport)="openEscalationModal('Customer Support')">
-          </app-chat-message>
+          <!-- Conversation History -->
+          <div class="messages-list" *ngIf="messages.length > 0">
+            <app-chat-message
+              *ngFor="let msg of messages"
+              [message]="msg"
+              (resendMessage)="handleResendMessage($event)"
+              (retryMessage)="handleRetryMessage($event)"
+              (triggerClarification)="handleClarificationRequest()"
+              (triggerHumanSupport)="openEscalationModal('Customer Support')">
+            </app-chat-message>
 
-          <!-- Loading / Processing Indicator -->
-          <div *ngIf="isLoading" class="typing-indicator-row" role="status" aria-label="AutoCare Guide is checking your question">
-            <div class="assistant-avatar-col">🤖</div>
-            <div class="typing-bubble">
-              <span class="typing-dot"></span>
-              <span class="typing-dot"></span>
-              <span class="typing-dot"></span>
-              <span class="typing-text">AutoCare Guide is checking your question...</span>
+            <!-- Loading / Processing Indicator -->
+            <div *ngIf="isLoading" class="typing-indicator-row animate-message-appear" role="status" aria-label="AutoCare Guide is checking your question">
+              <div class="assistant-avatar-col" aria-hidden="true">
+                <div class="avatar-badge">🤖</div>
+              </div>
+              <div class="typing-bubble">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-text">AutoCare Guide is analyzing vehicle guidelines...</span>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
 
-      <!-- Message Input Bar -->
-      <app-chat-input
-        [isLoading]="isLoading"
-        (sendMessage)="handleSendMessage($event)"
-        (stopProcessing)="handleStopProcessing()">
-      </app-chat-input>
+        <!-- Message Input Bar -->
+        <app-chat-input
+          [isLoading]="isLoading"
+          (sendMessage)="handleSendMessage($event)"
+          (stopProcessing)="handleStopProcessing()">
+        </app-chat-input>
 
-      <!-- Escalation Confirmation Modal -->
-      <app-escalation-modal
-        [isOpen]="isEscalationModalOpen"
-        [targetDestination]="escalationTarget"
-        (confirm)="confirmEscalation()"
-        (cancel)="closeEscalationModal()">
-      </app-escalation-modal>
+        <!-- Escalation Confirmation Modal -->
+        <app-escalation-modal
+          [isOpen]="isEscalationModalOpen"
+          [targetDestination]="escalationTarget"
+          (confirm)="confirmEscalation()"
+          (cancel)="closeEscalationModal()">
+        </app-escalation-modal>
+      </div>
     </div>
   `,
   styles: [`
+    .app-viewport {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
     .app-layout {
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      max-width: 960px;
+      height: calc(100vh - 2.5rem);
+      width: 100%;
+      max-width: 900px;
       margin: 0 auto;
-      background-color: var(--color-surface);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
     }
     .chat-main {
       flex: 1;
       overflow-y: auto;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+      padding: 1.25rem 1rem;
+      scroll-behavior: smooth;
     }
     .messages-list {
       display: flex;
       flex-direction: column;
+      gap: 0.25rem;
     }
     .typing-indicator-row {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0 1rem;
+      padding: 0 0.5rem;
       margin-bottom: 1.25rem;
     }
     .assistant-avatar-col {
-      width: 36px;
-      height: 36px;
+      flex-shrink: 0;
+    }
+    .avatar-badge {
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background-color: rgba(2, 132, 199, 0.1);
+      background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.125rem;
+      font-size: 1.15rem;
     }
     .typing-bubble {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      background-color: #f1f5f9;
-      padding: 0.75rem 1rem;
-      border-radius: 16px 16px 16px 4px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      padding: 0.75rem 1.125rem;
+      border-radius: 20px 20px 20px 4px;
       font-size: 0.8125rem;
       color: var(--color-text-muted);
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
     }
     .typing-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background-color: var(--color-primary);
+      display: inline-block;
       animation: typingBounce 1.4s infinite ease-in-out;
     }
     .typing-dot:nth-child(2) { animation-delay: 0.2s; }
     .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-    @keyframes typingBounce {
-      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-      40% { transform: scale(1.2); opacity: 1; }
+    @media (max-width: 768px) {
+      .app-viewport {
+        padding: 0;
+        min-height: 100vh;
+      }
+      .app-layout {
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+      }
+      .chat-main {
+        padding: 1rem 0.75rem;
+      }
     }
   `]
 })

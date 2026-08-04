@@ -7,9 +7,9 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div *ngIf="isOpen" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-card">
+      <div class="modal-card glass-card animate-modal">
         <div class="modal-header">
-          <span class="modal-icon">🙋</span>
+          <div class="modal-icon-badge">🙋</div>
           <h3 id="modal-title" class="modal-title">Confirm Escalation to Human Support</h3>
         </div>
 
@@ -22,8 +22,8 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <div class="modal-actions">
-          <button type="button" class="btn-cancel" (click)="onCancel()">Cancel</button>
-          <button type="button" class="btn-confirm" (click)="onConfirm()">Confirm Escalation</button>
+          <button type="button" class="btn-cancel btn-interactive min-touch-target" (click)="onCancel()">Cancel</button>
+          <button type="button" class="btn-confirm btn-interactive min-touch-target" (click)="onConfirm()">Confirm Escalation</button>
         </div>
       </div>
     </div>
@@ -35,73 +35,91 @@ import { CommonModule } from '@angular/common';
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(15, 23, 42, 0.5);
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 1000;
-      backdrop-filter: blur(2px);
+      padding: 1rem;
     }
     .modal-card {
-      background-color: var(--color-surface);
-      border-radius: 14px;
-      padding: 1.5rem;
+      padding: 1.75rem;
       max-width: 480px;
-      width: 90%;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      border: 1px solid var(--color-border);
+      width: 100%;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      background: rgba(255, 255, 255, 0.95);
+    }
+    .animate-modal {
+      animation: modalScaleIn 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .modal-header {
       display: flex;
       align-items: center;
-      gap: 0.625rem;
-      margin-bottom: 0.875rem;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
     }
-    .modal-icon {
+    .modal-icon-badge {
       font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
     .modal-title {
-      font-size: 1.125rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
       color: var(--color-navy);
       margin: 0;
+      letter-spacing: -0.01em;
     }
     .modal-body {
       font-size: 0.9375rem;
       color: var(--color-text-main);
-      line-height: 1.45;
+      line-height: 1.5;
       margin: 0 0 1rem 0;
     }
     .modal-notice {
       font-size: 0.8125rem;
-      background-color: #f1f5f9;
-      padding: 0.625rem;
-      border-radius: 8px;
+      background: rgba(241, 245, 249, 0.9);
+      padding: 0.75rem;
+      border-radius: var(--radius-md);
       color: var(--color-text-muted);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.375rem;
+      border: 1px solid var(--color-border);
+      line-height: 1.45;
     }
     .modal-actions {
       display: flex;
       justify-content: flex-end;
-      gap: 0.625rem;
+      gap: 0.75rem;
     }
     .btn-cancel {
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--radius-pill);
       border: 1px solid var(--color-border);
-      background-color: white;
+      background: white;
       color: var(--color-navy);
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 0.875rem;
       cursor: pointer;
     }
     .btn-confirm {
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--radius-pill);
       border: none;
-      background-color: var(--color-primary);
+      background: var(--button-gradient);
       color: white;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 0.875rem;
       cursor: pointer;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
     }
   `]
 })

@@ -12,13 +12,15 @@ export interface SuggestedQuestion {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section class="welcome-container" aria-labelledby="welcome-heading">
-      <div class="welcome-card">
+    <section class="welcome-container animate-message-appear" aria-labelledby="welcome-heading">
+      <div class="welcome-card glass-card">
         <div class="welcome-header">
-          <div class="assistant-avatar" aria-hidden="true">🚗</div>
-          <div>
+          <div class="assistant-avatar" aria-hidden="true">
+            <span class="avatar-emoji">🚗</span>
+          </div>
+          <div class="welcome-title-group">
             <h2 id="welcome-heading" class="welcome-title">Welcome to AutoCare Guide</h2>
-            <p class="welcome-subtitle">Your AI automobile service and maintenance assistant</p>
+            <p class="welcome-subtitle">Your AI vehicle service & maintenance assistant</p>
           </div>
         </div>
 
@@ -28,7 +30,7 @@ export interface SuggestedQuestion {
 
         <!-- HCAI Limitation Disclaimer -->
         <div class="limitation-banner" role="note" aria-label="Limitation Notice">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="12" y1="8" x2="12" y2="12"></line>
             <line x1="12" y1="16" x2="12.01" y2="16"></line>
@@ -45,7 +47,7 @@ export interface SuggestedQuestion {
             <button 
               *ngFor="let q of suggestedQuestions" 
               type="button" 
-              class="chip-button" 
+              class="chip-button btn-interactive min-touch-target" 
               (click)="onSelectQuestion(q.text)"
               [attr.aria-label]="'Ask question: ' + q.text">
               <span class="chip-icon" aria-hidden="true">{{ q.icon }}</span>
@@ -58,109 +60,124 @@ export interface SuggestedQuestion {
   `,
   styles: [`
     .welcome-container {
-      margin: 1.5rem auto;
-      max-width: 720px;
-      padding: 0 1rem;
+      margin: 1.25rem auto;
+      max-width: 760px;
+      padding: 0 0.5rem;
     }
     .welcome-card {
-      background-color: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      padding: 1.75rem;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
     }
     .welcome-header {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
+      gap: 1.125rem;
+      margin-bottom: 1.125rem;
     }
     .assistant-avatar {
-      font-size: 2rem;
-      width: 52px;
-      height: 52px;
+      font-size: 1.75rem;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      background-color: rgba(2, 132, 199, 0.1);
+      background: linear-gradient(135deg, #ede9fe 0%, #c4b5fd 50%, #a78bfa 100%);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+    }
+    .welcome-title-group {
+      display: flex;
+      flex-direction: column;
     }
     .welcome-title {
-      font-size: 1.25rem;
-      font-weight: 700;
+      font-size: 1.35rem;
+      font-weight: 800;
       color: var(--color-navy);
       margin: 0;
+      letter-spacing: -0.02em;
     }
     .welcome-subtitle {
       font-size: 0.875rem;
       color: var(--color-text-muted);
       margin: 0.25rem 0 0 0;
+      font-weight: 500;
     }
     .welcome-text {
       font-size: 0.9375rem;
       color: var(--color-text-main);
-      line-height: 1.5;
-      margin: 0 0 1rem 0;
+      line-height: 1.55;
+      margin: 0 0 1.25rem 0;
     }
     .limitation-banner {
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
-      background-color: rgba(217, 119, 6, 0.08);
-      border: 1px solid rgba(217, 119, 6, 0.25);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: var(--radius-md);
+      padding: 0.875rem 1.125rem;
       font-size: 0.8125rem;
       color: #92400e;
       margin-bottom: 1.5rem;
-      line-height: 1.45;
+      line-height: 1.5;
     }
     .limitation-banner svg {
       flex-shrink: 0;
-      margin-top: 1px;
+      margin-top: 2px;
       color: var(--color-warning);
     }
     .suggestions-title {
-      font-size: 0.875rem;
-      font-weight: 600;
+      font-size: 0.8125rem;
+      font-weight: 700;
       color: var(--color-navy);
-      margin: 0 0 0.75rem 0;
+      margin: 0 0 0.875rem 0;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
     }
     .suggestions-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 0.625rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
     }
     .chip-button {
       display: flex;
       align-items: center;
-      gap: 0.625rem;
-      padding: 0.75rem 0.875rem;
-      border: 1px solid var(--color-border);
-      border-radius: 10px;
-      background-color: #f8fafc;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: var(--color-navy);
       font-size: 0.875rem;
-      font-weight: 500;
+      font-weight: 600;
       text-align: left;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      width: 100%;
+      box-shadow: var(--shadow-sm);
     }
     .chip-button:hover {
-      background-color: rgba(2, 132, 199, 0.08);
-      border-color: var(--color-primary);
-      transform: translateY(-1px);
-    }
-    .chip-button:focus-visible {
-      outline: 3px solid var(--color-primary);
+      background: rgba(255, 255, 255, 0.98);
+      border-color: var(--color-accent-purple);
+      color: var(--color-primary);
     }
     .chip-icon {
-      font-size: 1.125rem;
+      font-size: 1.2rem;
+      flex-shrink: 0;
     }
     .chip-text {
-      line-height: 1.35;
+      line-height: 1.4;
+    }
+    @media (max-width: 640px) {
+      .welcome-card {
+        padding: 1.25rem;
+      }
+      .suggestions-grid {
+        grid-template-columns: 1fr;
+      }
     }
   `]
 })
