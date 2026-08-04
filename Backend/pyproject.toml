@@ -1,0 +1,31 @@
+[project]
+name = "autocare-backend"
+version = "0.1.0"
+description = "AutoCare Guide CrewAI Backend for Intelligent Customer Support and Triage"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "crewai>=1.15.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.27.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+

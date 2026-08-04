@@ -1,0 +1,49 @@
+classification_task:
+  description: >
+    Analyze the user message: "{user_message}".
+    Convert it into a structured QueryUnderstanding JSON:
+    - original_query
+    - normalized_query (corrected grammar/spelling, exact original meaning preserved)
+    - request_type (INFORMATIONAL, VEHICLE_SYMPTOM, COMPLAINT, EMERGENCY, UNSAFE_REQUEST, ILLEGAL_REQUEST, SECURITY_OR_PROMPT_INJECTION, OUT_OF_SCOPE, UNCLEAR)
+    - user_goal
+    - suggested_category
+    - safety_signals
+    - complaint_signals
+    - ambiguities
+    - classification_confidence
+  expected_output: >
+    A JSON object strictly following the QueryUnderstanding schema.
+
+faq_retrieval_task:
+  description: >
+    Use the FAQ search tool to perform category-restricted semantic search for "{user_message}".
+    Retrieve top candidates, then re-rank them evaluating:
+    1. Does the FAQ answer the user's actual goal?
+    2. Does it belong to a compatible category?
+    3. Does it preserve positive and negative meaning?
+    4. Would using this answer misrepresent the user's request?
+    5. Is the match strong enough to answer?
+    Return one FAQ by default, multiple only when each directly contributes, or `no_match`.
+  expected_output: >
+    A list of matched FAQ IDs and exact approved text, or `no_match`.
+
+response_writing_task:
+  description: >
+    Draft a response to "{user_message}" based on the classification decision, retrieved FAQ evidence, and approved policies.
+    Rules:
+    - Follow tone policy (empathetic, concise, professional).
+    - If decision is ESCALATE_EMERGENCY, put immediate safety instructions (e.g. pull over safely, turn off engine) AT THE VERY BEGINNING.
+    - If confidence_level is LOW, ask no more than two focused clarification questions.
+    - Never guarantee vehicle safety or give definitive diagnoses without physical inspection.
+    - Never request sensitive credentials or claim human support/emergency services have been dispatched.
+  expected_output: >
+    The draft customer-facing response text.
+
+escalation_decision_task:
+  description: >
+    Perform final safety, policy, and compliance review on the classification, evidence, and draft response for "{user_message}".
+    Calculate final overall confidence_level (CONTRADICTORY if conflict exists, LOW if missing info/assumption, MEDIUM for inference, HIGH for direct evidence).
+    Assemble all evidence items with insight, evidence_type, confidence_level, source, reason, and review_guidance.
+    Output valid AutoCareResponse JSON structure.
+  expected_output: >
+    A valid JSON matching the AutoCareResponse schema.

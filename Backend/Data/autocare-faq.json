@@ -1,0 +1,483 @@
+{
+  "dataset_name": "AutoCare Guide FAQ Dataset",
+  "version": "1.1",
+  "industry": "Automobile Service and Maintenance",
+  "target_users": "Car owners seeking vehicle service and maintenance assistance",
+  "faqs": [
+    {
+      "id": "AC-FAQ-001",
+      "category": "Dashboard Warning Lights",
+      "question": "What does the orange check-engine warning light mean?",
+      "alternate_questions": [
+        "Why is there an orange engine symbol?",
+        "What does check engine light mean?",
+        "Orange engine warning light on dashboard",
+        "Check engine lamp illuminated"
+      ],
+      "keywords": [
+        "check engine",
+        "orange light",
+        "engine warning",
+        "check engine light",
+        "engine symbol",
+        "warning light"
+      ],
+      "answer": "The orange check-engine light indicates that the vehicle has detected a possible engine, emission, fuel, ignition or sensor-related problem. If the light remains steady and the vehicle behaves normally, arrange a diagnostic inspection soon. If it flashes or the vehicle loses power, vibrates heavily, overheats or produces unusual smoke, stop driving safely and request professional assistance."
+    },
+    {
+      "id": "AC-FAQ-002",
+      "category": "Dashboard Warning Lights",
+      "question": "What should I do if the red engine-temperature warning appears?",
+      "alternate_questions": [
+        "Red coolant warning light came on",
+        "Engine temperature red symbol",
+        "What to do if temperature light turns red?",
+        "Car temperature gauge in red zone"
+      ],
+      "keywords": [
+        "temperature warning",
+        "red temperature light",
+        "engine overheating",
+        "coolant light",
+        "red engine light"
+      ],
+      "answer": "A red temperature warning can indicate that the engine is overheating. Pull over safely, switch off the engine and allow it to cool. Do not open the radiator or coolant cap while the engine is hot. Contact roadside assistance or an authorised service centre before continuing the journey."
+    },
+    {
+      "id": "AC-FAQ-003",
+      "category": "Dashboard Warning Lights",
+      "question": "Why is the battery warning light showing while I am driving?",
+      "alternate_questions": [
+        "Battery symbol on dashboard while driving",
+        "Why is my alternator light on?",
+        "Battery charge light came on",
+        "Charging system warning light"
+      ],
+      "keywords": [
+        "battery light",
+        "battery warning",
+        "alternator light",
+        "charging system",
+        "battery symbol"
+      ],
+      "answer": "The battery warning light may indicate a problem with the charging system, alternator, battery, drive belt or electrical connections. Reduce unnecessary electrical use and arrange an inspection immediately. If the steering becomes heavy, the temperature rises or the vehicle begins losing power, stop safely and request roadside assistance."
+    },
+    {
+      "id": "AC-FAQ-004",
+      "category": "Dashboard Warning Lights",
+      "question": "What does the tyre-pressure warning light mean?",
+      "alternate_questions": [
+        "What does tyre pressure light mean?",
+        "Low tire air pressure warning",
+        "TPMS light illuminated",
+        "Tire pressure warning symbol"
+      ],
+      "keywords": [
+        "tyre pressure",
+        "tire pressure",
+        "tpms",
+        "low tyre air",
+        "underinflated tyre",
+        "tyre warning"
+      ],
+      "answer": "The tyre-pressure warning usually means that one or more tyres may be underinflated, overinflated or affected by a sensor issue. When it is safe, inspect the tyres for visible damage and check their pressure against the value specified in the vehicle manual or door-frame label. Do not continue driving on a visibly flat or damaged tyre."
+    },
+    {
+      "id": "AC-FAQ-005",
+      "category": "Scheduled Maintenance",
+      "question": "How often should I service my car?",
+      "alternate_questions": [
+        "When is my car due for service?",
+        "How often do I need to service car?",
+        "Car service frequency schedule",
+        "How many miles between car services?"
+      ],
+      "keywords": [
+        "service frequency",
+        "service interval",
+        "how often service",
+        "service due",
+        "maintenance schedule"
+      ],
+      "answer": "Service intervals depend on the vehicle model, age, mileage, fuel type and driving conditions. Follow the time or distance interval in the owner's manual, whichever occurs first. Vehicles frequently used in heavy traffic, dusty conditions, extreme temperatures or for short trips may require more frequent maintenance."
+    },
+    {
+      "id": "AC-FAQ-006",
+      "category": "Scheduled Maintenance",
+      "question": "When should the engine oil be changed?",
+      "alternate_questions": [
+        "How often should engine oil be replaced?",
+        "When do I change motor oil?",
+        "Oil change interval for car",
+        "How many km for oil replacement?"
+      ],
+      "keywords": [
+        "oil change",
+        "engine oil",
+        "change oil",
+        "replace oil",
+        "motor oil"
+      ],
+      "answer": "Engine-oil replacement should follow the interval and oil specification stated by the vehicle manufacturer. The correct interval varies by engine and oil type. Check the oil level regularly and arrange an inspection if you notice an oil warning, leakage, burning smell, unusual engine noise or an unexpected drop in the oil level."
+    },
+    {
+      "id": "AC-FAQ-007",
+      "category": "Scheduled Maintenance",
+      "question": "What is normally included in a periodic car service?",
+      "alternate_questions": [
+        "What is periodic maintenance?",
+        "What do they normally do during regular car servicing?",
+        "What work is done during routine maintenance?",
+        "What does a periodic service cover?",
+        "What is included in regular car servicing?"
+      ],
+      "keywords": [
+        "periodic maintenance",
+        "periodic service",
+        "regular servicing",
+        "routine maintenance",
+        "car service content"
+      ],
+      "answer": "A periodic service commonly includes engine-oil and oil-filter replacement, fluid-level checks, tyre and brake inspection, battery inspection, light checks and a general safety assessment. Air filters, cabin filters, spark plugs and other parts may be replaced depending on the service schedule and their condition."
+    },
+    {
+      "id": "AC-FAQ-008",
+      "category": "Scheduled Maintenance",
+      "question": "What happens if I delay a scheduled service?",
+      "alternate_questions": [
+        "What happens if car service is overdue?",
+        "Is it bad to skip periodic service?",
+        "Consequences of delaying car service",
+        "Late car service risks"
+      ],
+      "keywords": [
+        "delay service",
+        "overdue service",
+        "skip service",
+        "late service",
+        "missed service"
+      ],
+      "answer": "Delaying service can increase wear, reduce fuel efficiency, allow minor faults to become expensive repairs and potentially affect warranty coverage. If the service is overdue, book an appointment as soon as practical and inform the service centre about the current mileage and any warning lights or unusual symptoms."
+    },
+    {
+      "id": "AC-FAQ-009",
+      "category": "Brakes and Safety",
+      "question": "Why are my brakes making a squealing noise?",
+      "alternate_questions": [
+        "Why do my brakes squeak when stopping?",
+        "Brake noise squealing sound",
+        "High pitched sound when applying brakes",
+        "Squeaking brake pads"
+      ],
+      "keywords": [
+        "squealing brakes",
+        "squeaking brakes",
+        "brake noise",
+        "worn brake pads",
+        "brake squeak"
+      ],
+      "answer": "Brake squealing can result from worn brake pads, dust, moisture, glazing or contact between braking components. Because brake performance is safety-critical, arrange an inspection soon. If braking feels weak, the pedal sinks, the car pulls to one side or you hear grinding, avoid driving and obtain professional assistance."
+    },
+    {
+      "id": "AC-FAQ-010",
+      "category": "Brakes and Safety",
+      "question": "What should I do if the brake pedal feels soft or spongy?",
+      "alternate_questions": [
+        "The brake pedal feels like a sponge.",
+        "Brake pedal going to the floor",
+        "Soft brake pedal when pressing",
+        "Brakes feel mushy or weak"
+      ],
+      "keywords": [
+        "soft brake",
+        "spongy brake",
+        "brake pedal sponge",
+        "sinking brake pedal",
+        "brake mushy"
+      ],
+      "answer": "A soft or spongy brake pedal may indicate air in the brake lines, low brake fluid, a fluid leak or another braking-system problem. Do not rely on the vehicle for normal travel. Stop in a safe place and contact roadside assistance or a qualified service centre."
+    },
+    {
+      "id": "AC-FAQ-011",
+      "category": "Tyres",
+      "question": "How often should I check my tyre pressure?",
+      "alternate_questions": [
+        "How frequently to check tire pressure?",
+        "How often check tyre air?",
+        "When should tyre pressure be measured?",
+        "Checking tyre inflation interval"
+      ],
+      "keywords": [
+        "check tyre pressure",
+        "tire pressure check",
+        "tyre air check",
+        "monthly tyre pressure"
+      ],
+      "answer": "Check tyre pressure at least once a month and before long trips, preferably when the tyres are cold. Use the pressure recommended on the vehicle's door-frame label or in the owner's manual. Also inspect the tyres for cuts, bulges, uneven wear and embedded objects."
+    },
+    {
+      "id": "AC-FAQ-012",
+      "category": "Tyres",
+      "question": "When should I replace my tyres?",
+      "alternate_questions": [
+        "When do I need new tires?",
+        "Tire tread replacement time",
+        "How to tell if tires are worn out?",
+        "When to replace old tyres?"
+      ],
+      "keywords": [
+        "replace tyres",
+        "new tires",
+        "tyre tread",
+        "worn tyres",
+        "tire replacement"
+      ],
+      "answer": "Replace tyres when the tread reaches the legal or manufacturer-specified limit, or when you find cracks, bulges, exposed cords, repeated pressure loss, severe uneven wear or age-related deterioration. Ask a tyre professional to inspect them if you are uncertain about their safety."
+    },
+    {
+      "id": "AC-FAQ-013",
+      "category": "Battery",
+      "question": "How can I tell if my car battery is becoming weak?",
+      "alternate_questions": [
+        "Signs of a weak car battery",
+        "Slow engine cranking battery issue",
+        "How do I know if battery is dying?",
+        "Difficult cranking weak battery"
+      ],
+      "keywords": [
+        "weak battery",
+        "slow cranking",
+        "battery dying",
+        "difficult starting",
+        "weak car battery"
+      ],
+      "answer": "Common signs include slow engine cranking, dim lights, clicking during startup, electrical problems or repeated need for a jump-start. These symptoms can also be caused by the alternator or another electrical fault, so request a battery and charging-system test before replacing components."
+    },
+    {
+      "id": "AC-FAQ-014",
+      "category": "Battery",
+      "question": "My car will not start. Does that mean the battery is dead?",
+      "alternate_questions": [
+        "Car won't start is battery dead?",
+        "Engine silent when turning key",
+        "Car not starting battery or starter?",
+        "Vehicle fails to start"
+      ],
+      "keywords": [
+        "car won't start",
+        "not starting",
+        "dead battery",
+        "engine silent",
+        "car will not start"
+      ],
+      "answer": "A weak battery is one possible cause, but the problem could also involve the starter, fuel system, immobiliser, ignition system or electrical connections. Note whether the engine cranks, clicks or remains silent. If you cannot identify the cause safely, contact roadside assistance rather than repeatedly attempting to start the vehicle."
+    },
+    {
+      "id": "AC-FAQ-015",
+      "category": "Fuel Efficiency",
+      "question": "Why has my car's fuel efficiency suddenly decreased?",
+      "alternate_questions": [
+        "Why is my car using so much fuel?",
+        "Sudden drop in gas mileage",
+        "Car consuming too much petrol",
+        "Low fuel economy causes"
+      ],
+      "keywords": [
+        "fuel efficiency",
+        "gas mileage",
+        "petrol consumption",
+        "fuel economy",
+        "high fuel usage"
+      ],
+      "answer": "Possible causes include low tyre pressure, heavy traffic, frequent short journeys, aggressive acceleration, excess load, poor-quality fuel, a clogged filter or an engine-management problem. Check the tyres and recent driving conditions first. If the change is significant or accompanied by a warning light, smoke, fuel smell or reduced performance, arrange an inspection."
+    },
+    {
+      "id": "AC-FAQ-016",
+      "category": "Air Conditioning",
+      "question": "Why is my car's air conditioner not cooling properly?",
+      "alternate_questions": [
+        "My car AC is running but it isn’t getting cold.",
+        "Air conditioner blowing warm air",
+        "Car AC not cooling properly",
+        "Aircon not cold"
+      ],
+      "keywords": [
+        "ac not cold",
+        "air conditioner cooling",
+        "aircon warm air",
+        "ac not cooling",
+        "car ac problem"
+      ],
+      "answer": "Poor cooling may be caused by a clogged cabin filter, low refrigerant, a leak, compressor trouble, condenser blockage or an electrical fault. A technician should inspect the system and check for leaks before adding refrigerant. Avoid attempting to open or repair the pressurised air-conditioning system yourself."
+    },
+    {
+      "id": "AC-FAQ-017",
+      "category": "Unusual Symptoms",
+      "question": "What should I do if I notice smoke coming from my car?",
+      "alternate_questions": [
+        "Car bonnet smoking what to do?",
+        "White or dark smoke coming from car engine",
+        "Smoke from exhaust or under hood",
+        "Engine smoking safety steps"
+      ],
+      "keywords": [
+        "smoke from car",
+        "engine smoke",
+        "car smoking",
+        "bonnet smoke",
+        "smoke exhaust"
+      ],
+      "answer": "Move to a safe location, switch off the engine, have everyone exit the vehicle and keep a safe distance. Do not open the bonnet if you suspect a fire, because additional oxygen may intensify it. Contact emergency services for fire or immediate danger, and contact roadside assistance for recovery."
+    },
+    {
+      "id": "AC-FAQ-018",
+      "category": "Unusual Symptoms",
+      "question": "What should I do if I smell fuel inside or around the car?",
+      "alternate_questions": [
+        "Strong petrol smell inside car",
+        "Why does my car smell like gas?",
+        "Fuel leak smell when driving",
+        "Raw petrol odour around vehicle"
+      ],
+      "keywords": [
+        "fuel smell",
+        "petrol smell",
+        "smell gas",
+        "fuel odour",
+        "fuel leak smell"
+      ],
+      "answer": "A strong fuel smell can indicate a leak or another hazardous fault. Switch off the engine, avoid flames, smoking, electrical sparks and repeated restart attempts, and move away from the vehicle if necessary. Contact roadside assistance or emergency services when there is an immediate danger."
+    },
+    {
+      "id": "AC-FAQ-019",
+      "category": "Service Appointments",
+      "question": "How do I prepare my car for a service appointment?",
+      "alternate_questions": [
+        "What documents should I take to the workshop?",
+        "What to bring for car service appointment?",
+        "Preparing car for service visit",
+        "Documents needed at service centre"
+      ],
+      "keywords": [
+        "workshop documents",
+        "service appointment prep",
+        "bring to service",
+        "workshop paperwork",
+        "service documents"
+      ],
+      "answer": "Remove valuable belongings, note the current mileage and fuel level, collect the service history and warranty documents, and list all symptoms you want checked. Describe when each problem occurs and request a written estimate before authorising additional work."
+    },
+    {
+      "id": "AC-FAQ-020",
+      "category": "Service Appointments",
+      "question": "What information should I provide when reporting a vehicle problem?",
+      "alternate_questions": [
+        "What details to give mechanic when dropping car?",
+        "Information needed when reporting car problem",
+        "How to describe car issue to workshop?",
+        "Reporting vehicle symptom details"
+      ],
+      "keywords": [
+        "reporting problem",
+        "describe car issue",
+        "mechanic details",
+        "symptom description",
+        "reporting fault"
+      ],
+      "answer": "Provide the vehicle make, model, year, fuel type, mileage, warning-light status and a clear description of the symptom. Explain when it started, when it occurs, whether it is constant or intermittent, and whether you noticed unusual sounds, smells, smoke, vibration, leakage or reduced performance."
+    },
+    {
+      "id": "AC-FAQ-021",
+      "category": "Service Appointments",
+      "question": "Can I get a repair estimate before the work begins?",
+      "alternate_questions": [
+        "Can I get repair price quote before work?",
+        "Written estimate before fixing car",
+        "Approval required before extra repair work",
+        "Repair estimate rights"
+      ],
+      "keywords": [
+        "repair estimate",
+        "price quote",
+        "written estimate",
+        "cost estimate",
+        "work authorization"
+      ],
+      "answer": "You should request an itemised estimate showing the diagnosed issue, proposed work, parts, labour, taxes and expected completion time. Ask the service centre to obtain your approval before performing work beyond the agreed estimate. The final amount may change if inspection reveals additional problems, but those changes should be explained before authorisation."
+    },
+    {
+      "id": "AC-FAQ-022",
+      "category": "Warranty",
+      "question": "Is every vehicle repair covered under warranty?",
+      "alternate_questions": [
+        "Are all car repairs covered by warranty?",
+        "What is excluded from vehicle warranty?",
+        "Does car warranty cover wear and tear?",
+        "Warranty coverage rules"
+      ],
+      "keywords": [
+        "warranty coverage",
+        "covered under warranty",
+        "warranty exclusions",
+        "repair warranty"
+      ],
+      "answer": "No. Warranty coverage depends on the manufacturer, warranty period, vehicle mileage, affected component, maintenance history and cause of failure. Normal wear, accidental damage, unauthorised modification, misuse and some consumable parts may be excluded. The warranty provider must review the vehicle details and service records to confirm coverage."
+    },
+    {
+      "id": "AC-FAQ-023",
+      "category": "Warranty",
+      "question": "Will servicing my car outside an authorised service centre affect its warranty?",
+      "alternate_questions": [
+        "Does independent garage void car warranty?",
+        "Servicing at third party workshop warranty effect",
+        "Can I service car anywhere without voiding warranty?",
+        "Non-authorised service warranty"
+      ],
+      "keywords": [
+        "void warranty",
+        "outside service centre",
+        "independent workshop warranty",
+        "third party servicing"
+      ],
+      "answer": "Warranty conditions vary by manufacturer and region. Using incorrect parts or fluids, missing required maintenance or failing to retain invoices and service records may affect a claim. Review the warranty terms or obtain written confirmation from the manufacturer before choosing a non-authorised service provider."
+    },
+    {
+      "id": "AC-FAQ-024",
+      "category": "Billing and Complaints",
+      "question": "What should I do if I was charged for work that I did not approve?",
+      "alternate_questions": [
+        "Charged for unauthorised repairs what to do?",
+        "Unapproved charges on service bill",
+        "Disputing unexpected car repair bill",
+        "Overcharged at workshop complaint"
+      ],
+      "keywords": [
+        "unapproved charge",
+        "unauthorised repair",
+        "dispute bill",
+        "overcharged",
+        "billing complaint"
+      ],
+      "answer": "Request an itemised invoice and compare it with the estimate and work authorisation. Ask the service manager to explain the additional work and provide supporting records. Do not share sensitive payment information through the chatbot. The matter should be escalated to a human customer-support or complaint-resolution representative."
+    },
+    {
+      "id": "AC-FAQ-025",
+      "category": "Breakdown and Roadside Assistance",
+      "question": "What should I do if my car breaks down on the road?",
+      "alternate_questions": [
+        "Car broke down on highway what to do?",
+        "Stranded on road vehicle stopped working",
+        "Roadside breakdown safety steps",
+        "Vehicle breakdown assistance procedure"
+      ],
+      "keywords": [
+        "breakdown",
+        "stranded on road",
+        "vehicle stopped",
+        "roadside assistance",
+        "highway breakdown"
+      ],
+      "answer": "Move the vehicle away from traffic if it is safe to do so, switch on the hazard lights, apply the parking brake and place a warning triangle where legally permitted. Stay in a safe location away from moving traffic and contact roadside assistance. Contact emergency services if there is an accident, fire, injury, fuel leak or immediate danger."
+    }
+  ]
+}
