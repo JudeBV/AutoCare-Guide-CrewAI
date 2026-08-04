@@ -42,7 +42,7 @@ npm run build
 
 ## 🛠️ Architecture & Features
 
-- **Decoupled Service Layer**: `ChatService` delegates to `MockChatService` for offline development. Connects seamlessly to the FastAPI backend at `http://localhost:8000/chat`.
+- **Decoupled Service Layer**: `ChatService` delegates to `MockChatService` for offline development. Connects seamlessly to the FastAPI backend at `https://autocare-guide-api.onrender.com/chat`.
 - **Human-Centred AI (HCAI) UX**:
   - **Edit & Resend**: Revise previously sent messages.
   - **Stop Processing**: Cancel active request while loading.
